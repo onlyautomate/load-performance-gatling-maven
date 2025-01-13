@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scanPeriod="30 seconds" scan="false">
+    <!--for console logging-->
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="CONSOLE">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--for file logging, file created directly under the root folder of this project, check if specific file name is to be specified-->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>gatling-load-test.txt</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+        </encoder>
+    </appender>
+
+    <!--for console logging of request and response details-->
+    <!--by default, this is set to OFF-->
+    <!--set it to TRACE if you want these details displayed in all cases-->
+    <!--set it to DEBUG if you want these details displayed only in case of failure-->
+    <!--considering the nature of load tests, it is recommended to change the level only during local dry runs of a single test-->
+    <logger name="io.gatling.http.engine.response" level="OFF" />
+
+    <!-- Root logger -->
+    <root level="OFF">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
