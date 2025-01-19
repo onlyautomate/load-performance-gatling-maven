@@ -123,8 +123,8 @@ class ComputerDatabaseApi extends BaseApi {
                         }
                         list.shuffle()
                         list.take(3)
-                    }.saveAs(saveComputerDetailsListAs)) //save the details of id and name of any 3 random computers from search results as a list
-            ).exitHereIfFailed() //fail the scenario here
+                    }.saveAs(saveComputerDetailsListAs)) //save the details with id and name of any 3 random computers from search results as a list
+            ).exitHereIfFailed() //will exit the scenario here in case of failure
     }
 
     static ChainBuilder getComputerDetails(String elKeyComputerDetailsList) {
@@ -157,7 +157,7 @@ class ComputerDatabaseApi extends BaseApi {
                         def map = session.get('compDetails') as Map
                         session.set(saveComputerNameAs, map.name).set(saveComputerIdAs, map.id)
                     }
-                ).exitHereIfFailed() //fail the scenario here
+                ).exitHereIfFailed() //will exit the scenario here in case of failure
     }
 
     static ChainBuilder editComputer(String elKeyComputerName, String elKeyComputerId) {

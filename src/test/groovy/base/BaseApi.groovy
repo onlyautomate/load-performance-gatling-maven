@@ -52,7 +52,7 @@ abstract class BaseApi {
         map
     }
 
-    //Different ways in which request configuration can be provided to create HttpRequestActionBuilder
+    //different ways in which request configuration can be provided to create HttpRequestActionBuilder
     HttpRequestActionBuilder buildHttpRequest(){
         buildHttpRequest(null, null, null)
     }

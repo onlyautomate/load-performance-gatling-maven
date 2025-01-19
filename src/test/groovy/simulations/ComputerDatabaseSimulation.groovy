@@ -47,16 +47,16 @@ class ComputerDatabaseSimulation extends Simulation {
                         rampUsersPerSec(2).to(3).during(5),
                         stressPeakUsers(4).during(10)
                 ),
-                //closed onjection, fixed number of concurrent virtual users at a time
+                //closed injection, fixed number of concurrent virtual users at a time
                 adminUserScenario.injectClosed(
                         constantConcurrentUsers(1).during(1),
                         rampConcurrentUsers(1).to(2).during(6)
                 )
         )
-                .protocols(protocols) //add supported promotocols
+                .protocols(protocols) //add supported protocols
                 .assertions(global().responseTime().max().lt(800)) //no requests should exceed max response time of 800ms
                 .assertions(forAll().failedRequests().percent().gt(5.0)) //no request should have failure rate of more than 5%
-                .assertions(details('admin-only').requestsPerSec().between(1.0, 10.0)) //applicable to requests from the said group only
+                .assertions(details('admin-only').requestsPerSec().between(1.0, 10.0)) //applicable to requests from the specified group only
                 .assertions(details('admin-only', 'POST /computers/{id}/delete, delete existing computer').failedRequests().percent().is(0.0)) //no delete request should fail
     }
 }
